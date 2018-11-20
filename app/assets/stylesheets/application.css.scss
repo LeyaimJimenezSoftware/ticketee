@@ -14,13 +14,21 @@
  *= require_self
  */
 
- @import "projects";
+ 
 
- @import "font-awesome";
+
+
+
+
+
+
 
  @import "bootstrap-sprockets";
  @import "bootstrap"; 
- 
+ @import "font-awesome";
+ @import "projects";
+ @import "responsive";
+
  // Core variables and mixins
  @import "bootstrap/variables";
  @import "bootstrap/mixins";
@@ -86,6 +94,16 @@ position: relative;
   }
 }
 
+header {
+    @extend .page-header;
+    position: relative;
+    padding-bottom: 0px;
+  
+    &:first-child {
+      margin-top: 20px;
+    }
+  }
+
 ul.actions {
   @extend .list-unstyled;
   @extend .list-inline;
@@ -129,16 +147,7 @@ a.new, a.edit, a.delete {
     }
   }
 
-  header {
-    @extend .page-header;
-    position: relative;
-    padding-bottom: 0px;
   
-    &:first-child {
-      margin-top: 20px;
-    }
-  }
-
   .alert-notice {
     @extend .alert-success;
   }
@@ -154,3 +163,22 @@ a.new, a.edit, a.delete {
   body {
     padding-top: 70px;
   }
+
+  @media(max-width: 500px) {
+    p { color: red }
+  }
+
+  header {
+    @extend .page-header;
+    position: relative;
+    padding-bottom: 0px;
+  
+    &:first-child {
+      margin-top: 20px;
+    }
+  }
+  
+  ul.actions {
+    @extend .list-unstyled;
+    @extend .list-inline;
+  } 

@@ -1,6 +1,13 @@
-<h1>Projects</h1>
+<header>
+  <h1>Projects</h1>
 
-<%= link_to "New Project", new_project_path %> 
+  <ul class="actions">
+
+   <%= link_to "New Project", new_project_path, class: "new" %>
+
+  </ul>
+</header> 
+
 <div id="projects">
   <% @projects.each do |project| %>
     <h2><%= link_to project.name, project %></h2>

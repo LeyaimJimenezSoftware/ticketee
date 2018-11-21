@@ -1,11 +1,11 @@
 class CreateProjects < ActiveRecord::Migration[5.2]
-  def up
-   remove_column :projects, :name
-    end
-  end
+  def change
+    create_table :projects do |t|
+      t.string :name
+      t.string :description
 
-  def down
-    add_column :projects, :name, :string 
+      t.timestamps null: false
+    end
   end
 
 end

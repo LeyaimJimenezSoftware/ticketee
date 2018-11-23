@@ -8,6 +8,9 @@ gem 'jquery-rails'
 # Boostrap styles
 gem "bootstrap-sass"
 
+#login gem
+gem "devise"
+
 # Font awesome
 gem 'font-awesome-rails', '~> 4.3'
 

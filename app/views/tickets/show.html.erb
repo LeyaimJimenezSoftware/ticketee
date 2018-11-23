@@ -10,7 +10,18 @@
     <li><%= link_to "Edit Ticket", [:edit, @project, @ticket],
       class: "edit" %></li>
   </ul>
-</header>
+ </header>
+
+ <table id="attributes">
+   <tr>
+     <th>Author:</th>
+     <td><%= @ticket.author.email %></td>
+   </tr>
+   <tr>
+     <th>Created:</th>
+     <td><%= time_ago_in_words(@ticket.created_at) %> ago</td>
+   </tr>
+ </table>
 
 <li><%= link_to "Delete Ticket", [@project, @ticket], method: :delete,
   data: { confirm: "Are you sure you want to delete this ticket?"},

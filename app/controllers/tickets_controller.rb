@@ -24,6 +24,7 @@ class TicketsController < ApplicationController
         @ticket = @project.tickets.build
     end
 
+    
     def create
         @ticket = @project.tickets.build(ticket_params)
 
@@ -36,6 +37,13 @@ class TicketsController < ApplicationController
         end
     end
 
+    def destroy
+      @ticket.destroy
+      flash[:notice] = "Ticket has been deleted."
+      redirect_to @project
+    end
+
+
     def set_project
         @project = Project.find(params[:project_id])
     end
@@ -43,6 +51,7 @@ class TicketsController < ApplicationController
     def set_ticket
         @ticket = @project.tickets.find(params[:id])
     end
+
     private
 
     

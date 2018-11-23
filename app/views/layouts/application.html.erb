@@ -18,6 +18,10 @@
     <div class="collapse navbar-collapse" id="collapse">
        <ul class="nav navbar-nav">
 
+         <li>
+            <%= link_to "Home", root_path %>
+          </li>
+
         <% if user_signed_in? %>
           <div class="navbar-right">
             <p class="navbar-text">

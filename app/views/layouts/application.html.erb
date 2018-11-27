@@ -18,10 +18,15 @@
     <div class="collapse navbar-collapse" id="collapse">
        <ul class="nav navbar-nav">
 
-         <li>
-            <%= link_to "Home", root_path %>
+       <li class="<%= "active" if current_page?("/") %>">
+          <%= link_to "Home", root_path %>
+        </li>
+        <% admins_only do %>
+          <li>
+            <%= link_to "Admin", admin_root_path %>
           </li>
-
+        <% end %>
+      
         <% if user_signed_in? %>
           <div class="navbar-right">
             <p class="navbar-text">

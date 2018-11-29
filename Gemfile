@@ -8,6 +8,8 @@ gem 'jquery-rails'
 # Boostrap styles
 gem "bootstrap-sass"
 
+#pundit
+gem 'pundit', '~> 1.1'
 #login gem
 gem "devise"
 

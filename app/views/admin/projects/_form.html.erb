@@ -1,12 +1,8 @@
-<header>
-  <h1>New Project</h1>
-</header>
-
-<%= simple_form_for(@project) do |f| %>
+<%= simple_form_for([:admin, project]) do |f| %>
 
  <%= f.input :name %>
  <%= f.input :description %>
  
  <%= f.button :submit, class: "btn-primary" %>
-    
+
 <% end %>

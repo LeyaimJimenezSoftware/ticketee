@@ -1,14 +1,18 @@
 require "rails_helper"
 
 RSpec.feature "Users can edit existing projects" do
+  let(:user) { FactoryBot.create(:user) }
+  let(:project) { FactoryBot.create(:project, name: "Sublime Text 3") }
 
     before do
-        FactoryGirl.create(:project, name: "Sublime Text 3")
+
+      login_as(user)
+      assign_role!(user, :manager, project) 
     
-        visit "/"
-        click_link "Sublime Text 3"
-        click_link "Edit Project"
-      end
+      visit "/"
+      click_link "Sublime Text 3"
+      click_link "Edit Project"
+    end
     
       scenario "with valid attributes" do
         fill_in "Name", with: "Sublime Text 4 beta"

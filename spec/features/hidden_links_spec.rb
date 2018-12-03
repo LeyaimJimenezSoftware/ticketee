@@ -1,21 +1,16 @@
 require "rails_helper"
 
 RSpec.feature "Users can only see the appropriate links" do 
-	let(:project) { FactoryBot.create(:project) }
+  let(:project) { FactoryBot.create(:project) }
   let(:user) { FactoryBot.create(:user) }
   let(:admin) { FactoryBot.create(:user, :admin) }
 
 	context "anonymous users" do
-		
-    scenario "cannot see the New Project link" do
-			visit "/"
-			expect(page).not_to have_link "New Project"
-		end
 
-	# "cannot see the delete Project link" do
-	#project_path(project)
-	#(page).not_to have_link "Delete Project"
-	#
+   	  scenario "cannot see the New Project link" do
+	    visit "/"
+	    expect(page).not_to have_link "New Project"
+	  end
 	end
 	
 
@@ -34,6 +29,11 @@ RSpec.feature "Users can only see the appropriate links" do
 			visit project_path(project)
 			expect(page).not_to have_link "Delete Project"
 		end
+
+		scenario "cannot see the Edit Project link" do
+			visit project_path(project)
+			expect(page).not_to have_link "Edit Project"
+		end
 	end
 		 
 	context "admin users"  do
@@ -47,6 +47,11 @@ RSpec.feature "Users can only see the appropriate links" do
 		scenario "can see the delete Projectlink" do
 			visit project_path(project)
 			expect(page).to have_link "Delete Project"
+		end
+
+		scenario "can see the Edit Project link" do
+			visit project_path(project)
+			expect(page).to have_link "Edit Project"
 		end
 	end
 end

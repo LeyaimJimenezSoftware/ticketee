@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.feature "Users can create new projects" do
   before do
+    login_as(FactoryBot.create(:user, :admin))
+
     visit "/"
 
     click_link "New Project"
@@ -27,5 +29,4 @@ RSpec.feature "Users can create new projects" do
     expect(page).to have_content "Project has not been created."
     expect(page).to have_content "Name can't be blank"
   end
-end 
-
+end

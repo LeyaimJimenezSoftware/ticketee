@@ -16,6 +16,7 @@ RSpec.describe TicketPolicy do
       it { should_not permit_action :show }
       it { should_not permit_action :create }
       it { should_not permit_action :update }
+      it { should_not permit_action :destroy }
     end
 
     context "for viewers of the project" do
@@ -24,6 +25,7 @@ RSpec.describe TicketPolicy do
       it { should permit_action :show }
       it { should_not permit_action :create }
       it { should_not permit_action :update }
+      it { should_not permit_action :destroy }
     end
 
     context "for editors of the project" do
@@ -32,6 +34,7 @@ RSpec.describe TicketPolicy do
       it { should permit_action :show }
       it { should permit_action :create }
       it { should_not permit_action :update }
+      it { should_not permit_action :destroy }
 
       context "when the editor created the ticket" do
         before { ticket.author = user }
@@ -46,9 +49,10 @@ RSpec.describe TicketPolicy do
       it { should permit_action :show }
       it { should permit_action :create }
       it { should permit_action :update }
+      it { should permit_action :destroy }
     end
 
-    context "for managers of other projects" do
+    context "for managers of other project" do
       before do
         assign_role!(user, :manager, FactoryBot.create(:project))
       end
@@ -56,6 +60,7 @@ RSpec.describe TicketPolicy do
       it { should_not permit_action :show }
       it { should_not permit_action :create }
       it { should_not permit_action :update }
+      it { should_not permit_action :destroy }
     end
 
     context "for administrators" do
@@ -64,6 +69,7 @@ RSpec.describe TicketPolicy do
       it { should permit_action :show }
       it { should permit_action :create }
       it { should permit_action :update }
+      it { should permit_action :destroy }
     end
   end
 end

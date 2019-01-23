@@ -3,7 +3,12 @@ class TicketsController < ApplicationController
     before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
     def show
-			authorize @ticket, :show?
+      authorize @ticket, :show?
+      
+      respond_to do |format|
+        format.html
+        format.json { render json: @ticket }
+      end
     end
 
     def edit

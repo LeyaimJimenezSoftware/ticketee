@@ -13,20 +13,12 @@
  *= require_tree .
  *= require_self
  */
-
- 
-
-
-
-
-
-
-
-
  @import "bootstrap-sprockets";
  @import "bootstrap"; 
  @import "font-awesome";
  @import "projects";
+ @import "tickets";
+ @import "admin/application";
  @import "responsive";
 
  // Core variables and mixins

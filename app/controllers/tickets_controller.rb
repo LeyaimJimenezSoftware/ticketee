@@ -6,12 +6,30 @@ class TicketsController < ApplicationController
         
     end
 
+    def edit
+        
+    end
+
+    def update
+        if @ticket.update(ticket_params)
+            flash[:notice] = "Ticket has been updated."
+            redirect_to [@project, @ticket]
+        else
+            flash.now[:alert] = "Ticket has not been updated."
+            render "edit"
+        end
+    end
+
     def new
         @ticket = @project.tickets.build
     end
 
+    
     def create
         @ticket = @project.tickets.build(ticket_params)
+        @ticket.author = current_user 
+        
+
 
         if @ticket.save
             flash[:notice] = "Ticket has been created."
@@ -22,6 +40,13 @@ class TicketsController < ApplicationController
         end
     end
 
+    def destroy
+      @ticket.destroy
+      flash[:notice] = "Ticket has been deleted."
+      redirect_to @project
+    end
+
+
     def set_project
         @project = Project.find(params[:project_id])
     end
@@ -29,6 +54,7 @@ class TicketsController < ApplicationController
     def set_ticket
         @ticket = @project.tickets.find(params[:id])
     end
+
     private
 
     

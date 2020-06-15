@@ -16,11 +16,36 @@
     </div>
 
     <div class="collapse navbar-collapse" id="collapse">
-      <ul class="nav navbar-nav">
-        <li class="<%= "active" if current_page?("/") %>">
-          <%= link_to "Home", root_path %>
-        </li>
-      </ul>
+       <ul class="nav navbar-nav">
+
+         <li>
+            <%= link_to "Home", root_path %>
+          </li>
+
+        <% if user_signed_in? %>
+          <div class="navbar-right">
+            <p class="navbar-text">
+              Signed in as <%= current_user.email %>
+            </p>
+            <ul class="nav navbar-nav">
+              <li><%= link_to "Sign out", destroy_user_session_path,
+                method: :delete %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+
+        <% unless user_signed_in? %>
+          <li class="<%= "active" if current_page?("/users/sign_up") %>">
+            <%= link_to "Sign up", new_user_registration_path %>
+          </li>
+          <li class="<%= "active" if current_page?("/users/sign_in") %>">
+            <%= link_to "Sign in", new_user_session_path %>
+          </li>
+        <% end %>
+
+          
+       </ul>
     </div>
   </div>
 </nav>
@@ -33,23 +58,23 @@
   <% else %>
     Ticketee
   <% end %>
-</title>
+  </title>
+
   <%= stylesheet_link_tag    'application', media: 'all',
     'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application',
     'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
+  <% flash.each do |key, message| %>
+    <div class="alert alert-<%= key %>">
+      <%= message %>
+    </div>
+  <% end %>
 
-<% flash.each do |key, message| %>
-  <div class="alert alert-<%= key %>">
-    <%= message %>
-  </div>
-<% end %>
-
-<%= yield %>
-
+  <%= yield %>
 </body>
 </html>
 
